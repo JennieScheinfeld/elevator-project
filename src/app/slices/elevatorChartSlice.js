@@ -11,7 +11,7 @@ const elevatorChart = [0,1,2,3,4].reduce((accu, index) => {
 
 const initialState = {
     elevatorChart,
-    numAvailableElevators: 1,
+    numAvailableElevators: 5,
     elevatorsAvailable: Object.keys(elevatorChart).length > 0
 }
 export const elevatorChartSlice = createSlice({

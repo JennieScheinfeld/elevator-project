@@ -14,24 +14,24 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
 
     const dispatch = useDispatch()
 
-    const {elevatorChart, numAvailableElevators, elevatorsAvailable} = useSelector((state) => state.elevatorChart)
+    const elevatorChart = useSelector((state) => state.elevatorChart.elevatorChart)
+    const numAvailableElevators = useSelector((state) => state.elevatorChart.numAvailableElevators)
+
     const [elevatorRequests, setElevatorRequests] = useState([])
 
     useEffect(() => {
-        if (elevatorsAvailable && elevatorRequests.length) {
+        const t = numAvailableElevators > 0 && elevatorRequests.length
+        if (numAvailableElevators > 0 && elevatorRequests.length) {
             let counter = numAvailableElevators
             while (counter > 0){
-                console.log("im in useEffect to handle elevator requests!")
-                console.log("elevatorRequests:", elevatorRequests, "counter:", counter)
-
                 const levelId = elevatorRequests[0]
-                setElevatorRequests(elevatorRequests => elevatorRequests.slice(1, elevatorRequests.length - 1))
+                setElevatorRequests(elevatorRequests => elevatorRequests.slice(1, elevatorRequests.length))
                 handleElevatorRequest(levelId)
                 counter = counter - 1
             }
 
         }
-    }, [elevatorsAvailable])
+    }, [numAvailableElevators])
 
     const handleElevatorRequest = (levelId) => {
         const elevatorId = allocateElevator(levelId)
