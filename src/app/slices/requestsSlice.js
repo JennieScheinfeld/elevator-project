@@ -1,4 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { numOfFloors } from '../constants'
+
+
+let floorIds = Array.from({ length: numOfFloors }, (_, index) => index);  
 
 export const STATUSES = {
   Call: "Call",
@@ -6,11 +10,12 @@ export const STATUSES = {
   Waiting: "Waiting"
 
 }
-const buttonStatuses = [0,1,2,3,4,5,6,7,8,9].reduce((accu, index) => {
-    accu[index] = {
-        status: STATUSES.Call
-          }
-    return accu
+
+const buttonStatuses = floorIds.reduce((accu, index) => {
+  accu[index] = {
+      status: STATUSES.Call
+        }
+  return accu
 }, {})
 
 

@@ -1,14 +1,20 @@
 import * as Styled from './style'
 import Elevator from '../elevator/elevator';
+import { useDispatch, connect, useSelector } from 'react-redux';
 
-export const ElevatorGrid =({elevatorNum= 5, levelsNum= 10 }) => {
-  let gridIds = Array.from({ length: elevatorNum*levelsNum }, (_, index) => elevatorNum*levelsNum -index - 1);  
+
+export const ElevatorGrid =({numOfElevators, numOfFloors }) => {
+  let gridIds = Array.from({ length: numOfElevators*numOfFloors }, (_, index) => numOfElevators*numOfFloors -index - 1);
+  const elevatorChart = useSelector(state => state.elevatorChart)
+
   return (
-        <Styled.Grid>
+        <Styled.Grid colmunsNum={numOfElevators}>
                  {gridIds.map((itemId)=> {
-                  const showElevator = itemId < elevatorNum
+                  const showElevator = itemId < numOfElevators
+                  const showTime = elevatorChart
                 return ( 
-                  <Styled.GridItem key={itemId}>
+                  <Styled.GridItem key={itemId}> 
+                  {itemId}
                       { showElevator ? <Elevator key={itemId} id={itemId} startingLevel={0}/> : <div style={{ padding: "20px"}}/>}
                   </Styled.GridItem>
               )

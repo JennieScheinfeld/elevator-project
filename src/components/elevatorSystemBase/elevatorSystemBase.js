@@ -20,7 +20,6 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
     const [elevatorRequests, setElevatorRequests] = useState([])
 
     useEffect(() => {
-        const t = numAvailableElevators > 0 && elevatorRequests.length
         if (numAvailableElevators > 0 && elevatorRequests.length) {
             let counter = numAvailableElevators
             while (counter > 0){
@@ -35,10 +34,7 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
 
     const handleElevatorRequest = (levelId) => {
         const elevatorId = allocateElevator(levelId)
-        if (elevatorId === null) {
-            setElevatorRequests(elevatorRequests => ([...elevatorRequests, levelId]))
-            return
-        }
+
         if (levelId !== elevatorChart[elevatorId]?.level) {
             dispatch(updateLevel({ level:levelId, elevatorId}))
             dispatch(updateStatus({ buttonId: levelId, status: STATUSES.Waiting }))
@@ -78,9 +74,9 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
         return selectedElevator
     }
     return <Container >
-        <LevelsContainer />
-        <ElevatorGrid/>
-        <ButtonContainer handleClick={handleClick} />
+        <LevelsContainer numOfFloors={numOfFloors}/>
+        <ElevatorGrid numOfElevators={numOfElevators} numOfFloors={numOfFloors} />
+        <ButtonContainer numOfButtons={numOfFloors} handleClick={handleClick} />
     </Container>
 }
 

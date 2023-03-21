@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Grid = styled.div`
   // margin: 10px;
   display: grid;
-  grid-template-columns: auto auto auto auto auto;
+  grid-template-columns: ${props => "auto ".repeat(props.colmunsNum)};
   padding: 10px;
   align-self: flex-end;
 `

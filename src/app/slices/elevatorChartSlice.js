@@ -1,6 +1,9 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { numOfElevators } from '../constants'
 
-const elevatorChart = [0,1,2,3,4].reduce((accu, index) => {
+let elevatorIds = Array.from({ length: numOfElevators }, (_, index) => index);  
+
+const elevatorChart = elevatorIds.reduce((accu, index) => {
     accu[index] = {
         level: 0,
         occupied: false
@@ -11,8 +14,8 @@ const elevatorChart = [0,1,2,3,4].reduce((accu, index) => {
 
 const initialState = {
     elevatorChart,
-    numAvailableElevators: 5,
-    elevatorsAvailable: Object.keys(elevatorChart).length > 0
+    numAvailableElevators: numOfElevators,
+    elevatorsAvailable: numOfElevators > 0
 }
 export const elevatorChartSlice = createSlice({
   name: 'elevatorChart',
