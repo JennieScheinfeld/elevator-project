@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useStopwatch } from 'react-timer-hook';
 
 const Timer = ({ shouldStart, shouldStop }) => {
@@ -18,6 +18,7 @@ const Timer = ({ shouldStart, shouldStop }) => {
         pause()
       }
     }, [shouldStart, shouldStop])
+    
     const minutesStr = `${minutes > 0 ? minutes + " min. " : ""}`
     const secondsStr = `${seconds > 0 ? seconds + " sec." : ""}`
       return (

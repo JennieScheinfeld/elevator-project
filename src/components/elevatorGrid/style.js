@@ -1,11 +1,11 @@
 import styled from "styled-components"
 
 export const Grid = styled.div`
-  // margin: 10px;
   display: grid;
   grid-template-columns: ${props => "auto ".repeat(props.colmunsNum)};
   padding: 10px;
   align-self: flex-end;
+  margin-right: 10px;
 `
 
 export const GridItem = styled.div`

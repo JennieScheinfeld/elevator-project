@@ -11,7 +11,9 @@ export const LevelsContainer = ({ numOfFloors = 10}) => {
     return <Styled.Container>
     {arrayOfIds.map(itemId => {
         const str = itemId === 0 ? "Ground Floor" : (itemId <= 3 ?  itemId + mapOfSuffix[itemId] : itemId + "th")
-        return <Styled.StyledLevel id={itemId} key={itemId}>{str}</Styled.StyledLevel>
+        return <Styled.LevelContainer>
+            <Styled.StyledLevel id={itemId} key={itemId}>{str}</Styled.StyledLevel>
+        </Styled.LevelContainer>
         })}
     </Styled.Container>
 }

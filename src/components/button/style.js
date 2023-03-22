@@ -6,8 +6,9 @@ export const StyledButton = styled.button`
     border:  ${(props) => props.params.border};
     padding-top: 5px;
     padding-bottom: 5px;
-    margin-top: 17.5px;
-    margin-bottom: ${(props) => props.isBottom ? "30px" : "17.5px"};       
+    margin:0px;
+    // margin-top: 17.5px;
+    // margin-bottom: ${(props) => props.isBottom ? "30px" : "17.5px"};       
     width: 80px;
     font-family: 'Josefin Sans', sans-serif;
     border-radius: 5px;
