@@ -22,7 +22,7 @@ const statusParams = {
     }
 }
 export const Button = ({ id, onClick}) => {
-    const {requests} = useSelector(state => state)
+    const requests = useSelector(state => state.requests)
     const status = requests[id].status
 
     return <StyledButton params={statusParams[status]} onClick={onClick}>

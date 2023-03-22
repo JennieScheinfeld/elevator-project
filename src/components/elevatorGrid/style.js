@@ -14,6 +14,8 @@ export const GridItem = styled.div`
     width: 80px;
     height: 38px;
     padding: 10px;
-    font-size: 30px;
-    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 `

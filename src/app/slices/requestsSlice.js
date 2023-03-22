@@ -13,7 +13,8 @@ export const STATUSES = {
 
 const buttonStatuses = floorIds.reduce((accu, index) => {
   accu[index] = {
-      status: STATUSES.Call
+      status: STATUSES.Call,
+      elevatorId: null
         }
   return accu
 }, {})
@@ -27,10 +28,14 @@ export const requestsSlice = createSlice({
     updateStatus: (state, action) => {
         const { buttonId, status} = action.payload
         state[buttonId].status = STATUSES[status]
-    }
+    },
+    updateElevatorId: (state, action) => {
+      const { buttonId, elevatorId} = action.payload
+      state[buttonId].elevatorId = elevatorId
+  }
   },
 })
 
-export const { updateStatus } = requestsSlice.actions
+export const { updateStatus, updateElevatorId } = requestsSlice.actions
 
 export default requestsSlice.reducer

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { ElevatorGrid } from "../elevatorGrid/elevatorGrid"
 import { useDispatch, connect, useSelector } from 'react-redux';
 import {updateLevel, updateOccupied} from '../../app/slices/elevatorChartSlice'
-import {STATUSES, updateStatus} from '../../app/slices/requestsSlice'
+import {STATUSES, updateStatus, updateElevatorId} from '../../app/slices/requestsSlice'
 import { ButtonContainer } from "../buttonsContainer/buttonsContainer";
 import { LevelsContainer} from "../levelsContainer/levelsContainer"
 import {Container} from './style'
@@ -38,6 +38,7 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
         if (levelId !== elevatorChart[elevatorId]?.level) {
             dispatch(updateLevel({ level:levelId, elevatorId}))
             dispatch(updateStatus({ buttonId: levelId, status: STATUSES.Waiting }))
+            dispatch(updateElevatorId({ buttonId: levelId, elevatorId}))
         } else {
             dispatch(updateOccupied({elevatorId, occupied: true }))
             dispatch(updateStatus({ buttonId: levelId, status: STATUSES.Arrived }))
@@ -52,7 +53,6 @@ const ElevatorSystemBase = ({ numOfElevators = 5, numOfFloors = 10}) => {
 
     const handleClick = (levelId) => { 
         if (numAvailableElevators === 0) {
-            console.log("elevatorRequests:", elevatorRequests)
             setElevatorRequests(elevatorRequests => ([...elevatorRequests, levelId]))
             dispatch(updateStatus({ buttonId: levelId, status: STATUSES.Waiting }))
         } else {

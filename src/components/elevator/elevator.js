@@ -1,5 +1,5 @@
 import { ElevatorSVG } from '../elevatorSVG'
-import { useRef } from 'react'
+import {  useRef } from 'react'
 import { useSpring, animated } from '@react-spring/web'
 import { useDispatch, connect, useSelector } from 'react-redux';
 import {updateOccupied} from '../../app/slices/elevatorChartSlice'
@@ -48,7 +48,7 @@ const Elevator = ({ id, startingLevel= 0 }) => {
         }
       })
 
-      return <AnimatedElevator style={{ border: "1px", fill:colorByStatus[status], stroke:colorByStatus[status], height: "30px", width: "25px", ...springs}}/>
+      return <AnimatedElevator style={{ marginTop: "10px", fill:colorByStatus[status], stroke:colorByStatus[status], height: "30px", width: "25px", ...springs}}/>
 }
 
 export default connect()(Elevator)
